@@ -12,11 +12,15 @@ with open("output.txt", 'w') as fhandle_out:
     results = {}
     fhandle_out.write("threads | core group | opt | march | mtune | compress | decompress\n")
 
-    for CORE_GROUP in CORE_GROUPs:
-        for OPT_LVL in OPT_LVLs:
-            for MARCH in MARCHs:
-                for MTUNE in MTUNEs:
-                    call = f'make -E "THREADS={THREADS}" -E "CORE_GROUP={CORE_GROUP}" -E "OPT_LVL={OPT_LVL}" -E "MARCH={MARCH}" -E "MTUNE={MTUNE}" run'
+    for OPT_LVL in OPT_LVLs:
+        for MARCH in MARCHs:
+            for MTUNE in MTUNEs:
+                call = f'make -E "THREADS={THREADS}" -E "CORE_GROUP={CORE_GROUP}" -E "OPT_LVL={OPT_LVL}" -E "MARCH={MARCH}" -E "MTUNE={MTUNE}" build'
+                print(call)
+                os.system(call)
+
+                for CORE_GROUP in CORE_GROUPs:
+                    call = f'make -E "THREADS={THREADS}" -E "CORE_GROUP={CORE_GROUP}" -E "OPT_LVL={OPT_LVL}" -E "MARCH={MARCH}" -E "MTUNE={MTUNE}" run_nobuild'
                     print(call)
                     os.system(call)
 
