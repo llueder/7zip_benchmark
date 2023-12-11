@@ -4,9 +4,9 @@ import os
 
 THREADS=4
 CORE_GROUPs=[0, 1]
-MARCHs=["native", "tremont", "alderlake", "zenver4"]
-MTUNEs=["native", "tremont", "alderlake", "zenver4"]
-OPT_LVLs=["0", "1", "2", "3"]
+MARCHs=["native", "tremont", "alderlake", "znver4"]
+MTUNEs=["native", "tremont", "alderlake", "znver4"]
+OPT_LVLs=["1", "2", "3"]
 
 with open("output.txt", 'w') as fhandle_out:
     results = {}
