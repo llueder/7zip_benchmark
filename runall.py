@@ -15,7 +15,7 @@ with open("output.txt", 'w') as fhandle_out:
     for OPT_LVL in OPT_LVLs:
         for MARCH in MARCHs:
             for MTUNE in MTUNEs:
-                call = f'make -E "THREADS={THREADS}" -E "CORE_GROUP={CORE_GROUP}" -E "OPT_LVL={OPT_LVL}" -E "MARCH={MARCH}" -E "MTUNE={MTUNE}" build'
+                call = f'make -E "THREADS={THREADS}" -E "CORE_GROUP={0}" -E "OPT_LVL={OPT_LVL}" -E "MARCH={MARCH}" -E "MTUNE={MTUNE}" build'
                 print(call)
                 os.system(call)
 
@@ -35,4 +35,9 @@ with open("output.txt", 'w') as fhandle_out:
                     except FileNotFoundError:
                         pass
 
+                    results[f"{THREADS} | {CORE_GROUP} | {OPT_LVL} | {MARCH} | {MTUNE}"] = (compress, decompress)
                     fhandle_out.write(f"{THREADS} | {CORE_GROUP} | {OPT_LVL} | {MARCH} | {MTUNE} | {compress} | {decompress}\n")
+                    fhandle_out.flush()
+    import json
+    with open("output.json", 'w') as fhandle_json:
+        json.dump(results, fhandle_json)
