@@ -78,6 +78,7 @@ else:
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("compress on P")
+plt.savefig("/tmp/compress-on-P.png")
 
 if common_scale:
    plt.matshow(decompress_performance, cmap='gray', vmin=vmin, vmax=vmax)
@@ -86,6 +87,7 @@ else:
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("decompress on P")
+plt.savefig("/tmp/decompress-on-P.png")
 
 if common_scale:
    plt.matshow(compress_efficiency, cmap='gray', vmin=vmin, vmax=vmax)
@@ -94,6 +96,7 @@ else:
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("compress on E")
+plt.savefig("/tmp/compress-on-E.png")
 
 if common_scale:
    plt.matshow(decompress_efficiency, cmap='gray', vmin=vmin, vmax=vmax)
@@ -102,5 +105,6 @@ else:
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("decompress on E")
+plt.savefig("/tmp/decompress-on-E.png")
 
 plt.show()
