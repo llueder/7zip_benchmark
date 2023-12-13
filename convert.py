@@ -1,3 +1,6 @@
+import numpy as np
+from matplotlib import pyplot as plt
+
 f = open("2023-12-11.txt", 'r')
 results = {}
 table = []
@@ -57,35 +60,45 @@ print("c: " + str([e[COMPRESS] for e in table if e[GRP] == GRP_E and e[MARCH] ==
 print("d: " + str([e[DECOMPRESS] for e in table if e[GRP] == GRP_E and e[MARCH] == "tremont" and e[MTUNE] == "tremont"]))
 
 arch = ["native", "tremont", "alderlake"]
-opt = ["1", "2", "3"]
+opt = ["O1", "O2", "O3"]
 compress_performance = [[e[COMPRESS] for e in table if e[GRP] == GRP_P and e[MARCH] == e[MTUNE] and e[OPT]==opt] for opt in OPT_LVLS]
 decompress_performance = [[e[DECOMPRESS] for e in table if e[GRP] == GRP_P and e[MARCH] == e[MTUNE] and e[OPT]==opt] for opt in OPT_LVLS]
 compress_efficiency = [[e[COMPRESS] for e in table if e[GRP] == GRP_E and e[MARCH] == e[MTUNE] and e[OPT]==opt] for opt in OPT_LVLS]
 decompress_efficiency = [[e[DECOMPRESS] for e in table if e[GRP] == GRP_E and e[MARCH] == e[MTUNE] and e[OPT]==opt] for opt in OPT_LVLS]
+vmin = np.min(compress_performance + decompress_performance + compress_efficiency + decompress_efficiency)
+vmax = np.max(compress_performance + decompress_performance + compress_efficiency + decompress_efficiency)
 
-import numpy as np
-from matplotlib import pyplot as plt
 
-# plt.figure()
-plt.matshow(compress_performance)
+common_scale=False
+
+if common_scale:
+   plt.matshow(compress_performance, cmap='gray', vmin=vmin, vmax=vmax)
+else:
+   plt.matshow(compress_performance, cmap='gray', vmin=np.min(compress_performance), vmax=np.max(compress_performance))
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("compress on P")
 
-# plt.figure()
-plt.matshow(decompress_performance)
+if common_scale:
+   plt.matshow(decompress_performance, cmap='gray', vmin=vmin, vmax=vmax)
+else:
+   plt.matshow(decompress_performance, cmap='gray', vmin=np.min(decompress_performance), vmax=np.max(decompress_performance))
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("decompress on P")
 
-# plt.figure()
-plt.matshow(compress_efficiency)
+if common_scale:
+   plt.matshow(compress_efficiency, cmap='gray', vmin=vmin, vmax=vmax)
+else:
+   plt.matshow(compress_efficiency, cmap='gray', vmin=np.min(compress_efficiency), vmax=np.max(compress_efficiency))
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("compress on E")
 
-# plt.figure()
-plt.matshow(decompress_efficiency)
+if common_scale:
+   plt.matshow(decompress_efficiency, cmap='gray', vmin=vmin, vmax=vmax)
+else:
+   plt.matshow(decompress_efficiency, cmap='gray', vmin=np.min(decompress_efficiency), vmax=np.max(decompress_efficiency))
 plt.xticks(range(len(arch)), arch)
 plt.yticks(range(len(opt)), opt)
 plt.title("decompress on E")
