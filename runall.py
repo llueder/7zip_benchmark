@@ -2,11 +2,11 @@
 
 import os
 
-THREADS=4
+THREADS=2
 CORE_GROUPs=[0, 1]
-MARCHs=["native", "tremont", "alderlake", "znver4"]
-MTUNEs=["native", "tremont", "alderlake", "znver4"]
-OPT_LVLs=["1", "2", "3"]
+MARCHs=["native", "armv8-a"]
+MTUNEs=["native", "cortex-a53", "cortex-a73"]
+OPT_LVLs=["1", "2"]
 
 with open("output.txt", 'w') as fhandle_out:
     results = {}

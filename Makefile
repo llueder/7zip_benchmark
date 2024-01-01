@@ -18,8 +18,8 @@ else ifndef OPT_LVL
 error
 endif
 
-CORE_GROUP_0=0,2,4,6,8,10 # performance cores TODO check that these really are the distinct hw cores, not hyperthreading
-CORE_GROUP_1=12-17 # efficiency cires
+CORE_GROUP_0=0,1 # little cores
+CORE_GROUP_1=2,3 # big cores
 
 .PHONY: set_threads set_march set_mtune set_opt
 
