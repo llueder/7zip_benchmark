@@ -11,5 +11,6 @@ sed -i -e "s/MTUNE=.*/MTUNE=${MTUNE}/" CPP/7zip/7zip_gcc.mak
 sed -i -e "s/MARCH=.*/MARCH=${MARCH}/" CPP/7zip/7zip_gcc.mak
 sed -i -e "s/OPT_LVL=.*/OPT_LVL=${OPT_LVL}/" CPP/7zip/7zip_gcc.mak
 
+rm -rf CPP/7zip/Bundles/Alone2/b
 make -C CPP/7zip/Bundles/Alone -j -f ../../${MAKEFILE} clean
 make -C CPP/7zip/Bundles/Alone -j -f ../../${MAKEFILE}
