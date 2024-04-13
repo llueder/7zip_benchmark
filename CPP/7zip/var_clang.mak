@@ -9,3 +9,5 @@ USE_ASM=
 CC=$(CROSS_COMPILE)clang
 CXX=$(CROSS_COMPILE)clang++
 USE_CLANG=1
+# CC=/home/llueder/Masterarbeit/experiments/7zip_benchmark/clang_wrapper.sh
+# CXX=/home/llueder/Masterarbeit/experiments/7zip_benchmark/clang++_wrapper.sh

@@ -315,8 +315,8 @@ void BigFree(void *address)
 #endif // _WIN32
 
 
-static void *SzAlloc(ISzAllocPtr p, size_t size) { UNUSED_VAR(p)  return MyAlloc(size); }
-static void SzFree(ISzAllocPtr p, void *address) { UNUSED_VAR(p)  MyFree(address); }
+/*static*/ void *SzAlloc(ISzAllocPtr p, size_t size) { UNUSED_VAR(p)  return MyAlloc(size); }
+/*static*/ void SzFree(ISzAllocPtr p, void *address) { UNUSED_VAR(p)  MyFree(address); }
 const ISzAlloc g_Alloc = { SzAlloc, SzFree };
 
 #ifdef _WIN32
@@ -399,7 +399,7 @@ static int posix_memalign(void **ptr, size_t align, size_t size)
 
 #define ALLOC_ALIGN_SIZE ((size_t)1 << 7)
 
-static void *SzAlignedAlloc(ISzAllocPtr pp, size_t size)
+/*static*/ void *SzAlignedAlloc(ISzAllocPtr pp, size_t size)
 {
   #ifndef USE_posix_memalign
   
@@ -447,7 +447,7 @@ static void *SzAlignedAlloc(ISzAllocPtr pp, size_t size)
 }
 
 
-static void SzAlignedFree(ISzAllocPtr pp, void *address)
+/*static*/ void SzAlignedFree(ISzAllocPtr pp, void *address)
 {
   UNUSED_VAR(pp)
   #ifndef USE_posix_memalign
@@ -471,7 +471,7 @@ const ISzAlloc g_AlignedAlloc = { SzAlignedAlloc, SzAlignedFree };
 #define REAL_BLOCK_PTR_VAR(p) ((void **)(p))[-1]
 */
 
-static void *AlignOffsetAlloc_Alloc(ISzAllocPtr pp, size_t size)
+/*static*/ void *AlignOffsetAlloc_Alloc(ISzAllocPtr pp, size_t size)
 {
   const CAlignOffsetAlloc *p = Z7_CONTAINER_FROM_VTBL_CONST(pp, CAlignOffsetAlloc, vt);
   void *adr;
@@ -515,7 +515,7 @@ static void *AlignOffsetAlloc_Alloc(ISzAllocPtr pp, size_t size)
 }
 
 
-static void AlignOffsetAlloc_Free(ISzAllocPtr pp, void *address)
+/*static*/ void AlignOffsetAlloc_Free(ISzAllocPtr pp, void *address)
 {
   if (address)
   {

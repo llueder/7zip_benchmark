@@ -99,7 +99,7 @@ endif
 
 else
 
-LDFLAGS = $(LDFLAGS_STATIC)
+LDFLAGS = $(LDFLAGS_STATIC) /home/llueder/Masterarbeit/experiments/7zip_benchmark/het_lib2.o
 # -s is not required for clang, do we need it for GCC ???
 
 #-static -static-libgcc -static-libstdc++
